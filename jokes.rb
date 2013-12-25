@@ -5,7 +5,9 @@ set :sessions, true
 
 before do
 	@reveal = true
+	@next = false
 	@show_answer = false
+	@another_round = false
 end
 
 
@@ -31,7 +33,6 @@ post '/new_speaker' do
 	session[:speaker_name] = params[:speaker_name].capitalize
 
 	redirect '/joke'
-
 end
 
 get '/joke' do
@@ -50,25 +51,27 @@ get '/joke' do
 	session[:ask_to_show] = session[:ask].pop
 	
 	erb :joke
-
 end
 
 post '/joke/reveal' do
+	session[:answer_to_show] = session[:answer].pop
 	@show_answer = true
 	@reveal = false
-	session[:answer_to_show] = session[:answer].pop
+	@next = true
 	erb :joke
-
 end
 
 post '/joke/next' do
+	session[:ask_to_show] = session[:ask].pop
 	@show_answer = false
 	@reveal = true
-	session[:ask_to_show] = session[:ask].pop
+	@next = false
 
 	erb :joke
-
 end
 
+get '/joke_over' do
+	erb :joke_over
+end
 
 

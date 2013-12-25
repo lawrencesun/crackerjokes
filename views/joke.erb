@@ -2,6 +2,15 @@
 
 <p>Hello, <%=session[:speaker_name] %> is going to tell us a joke! </p>
 
+<% if @another_round %>
+	<p>
+		<em>Another Round?</em>
+		<a href='/joke' class='btn btn-success'>Yes</a>
+    <a href='/joke_over' class='btn btn-danger'>No</a>>
+	</p>
+<% end %>
+
+
 <div class='well'>
 <h4>Ask:</h4>
 	<%=session[:ask_to_show] %>
@@ -13,9 +22,11 @@
 		</form>
 	<% end %>
 
+	<%if @next %>
 	<form id='next_form' action='/joke/next' method='post'>
 		<input type='submit' class='btn btn-primary' value='Next'/>
 	</form>
+	<% end %>
 	</p>
 </div>
 
