@@ -4,8 +4,8 @@ require 'sinatra'
 set :sessions, true
 
 before do
-	@reveal_or_next = true
-
+	@reveal = true
+	@show_answer = false
 end
 
 
@@ -54,13 +54,16 @@ get '/joke' do
 end
 
 post '/joke/reveal' do
+	@show_answer = true
+	@reveal = false
 	session[:answer_to_show] = session[:answer].pop
-
 	erb :joke
 
 end
 
 post '/joke/next' do
+	@show_answer = false
+	@reveal = true
 	session[:ask_to_show] = session[:ask].pop
 
 	erb :joke

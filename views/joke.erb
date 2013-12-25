@@ -5,24 +5,25 @@
 <div class='well'>
 <h4>Ask:</h4>
 	<%=session[:ask_to_show] %>
-
-	<%if @reveal_or_next %>
-
+	<p>	
 	<br/>
-	<form id='reveal_form' action='/joke/reveal' method='post'>
-		<input type='submit' class='btn btn-success' value='Reveal'/>
-	</form>
+	<%if @reveal %>
+		<form id='reveal_form' action='/joke/reveal' method='post'>
+			<input type='submit' class='btn btn-success' value='Reveal'/>
+		</form>
+	<% end %>
+
 	<form id='next_form' action='/joke/next' method='post'>
 		<input type='submit' class='btn btn-primary' value='Next'/>
 	</form>
-	<% end %>
 	</p>
-	
 </div>
 
 <br/>
 
 <div class='well'>
 	<h4>Answer:</h4>
-	<%=session[:answer_to_show] %>
+	<% if @show_answer %>
+		<%=session[:answer_to_show] %>
+	<% end %>
 </div>
