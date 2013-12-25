@@ -58,10 +58,20 @@ post '/joke/reveal' do
 	@show_answer = true
 	@reveal = false
 	@next = true
+
 	erb :joke
 end
 
 post '/joke/next' do
+	if session[:ask].empty?
+		@error = "Oops, reached the end."
+		@another_round = true
+		@show_answer = true
+		@reveal = false
+		@next = false
+		halt erb :joke
+	end
+
 	session[:ask_to_show] = session[:ask].pop
 	@show_answer = false
 	@reveal = true
