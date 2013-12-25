@@ -1,4 +1,4 @@
-webblackjack
+Cracker Jokes
 ============
 
-web based blackjack game
+web based cracker jokes

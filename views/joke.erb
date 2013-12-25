@@ -1,0 +1,28 @@
+<h2>Cracker Jokes</h2>
+
+<p>Hello, <%=session[:speaker_name] %> is going to tell us a joke! </p>
+
+<div class='well'>
+<h4>Ask:</h4>
+	<%=session[:ask_to_show] %>
+
+	<%if @reveal_or_next %>
+
+	<br/>
+	<form id='reveal_form' action='/joke/reveal' method='post'>
+		<input type='submit' class='btn btn-success' value='Reveal'/>
+	</form>
+	<form id='next_form' action='/joke/next' method='post'>
+		<input type='submit' class='btn btn-primary' value='Next'/>
+	</form>
+	<% end %>
+	</p>
+	
+</div>
+
+<br/>
+
+<div class='well'>
+	<h4>Answer:</h4>
+	<%=session[:answer_to_show] %>
+</div>

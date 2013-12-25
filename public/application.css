@@ -1,0 +1,9 @@
+form#reveal_form {
+	float: left;
+	margin-right: 10px;
+}
+
+form#next_form {
+	float: left;
+}
+
